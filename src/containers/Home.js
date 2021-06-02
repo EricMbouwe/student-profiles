@@ -10,10 +10,9 @@ function Home() {
 
   return (
     <div>
-      <h1>Home component</h1>
       {error && <div>{error}</div>}
       {loading && <div>Loading...</div>}
-      {profiles && <ProfileList profiles={profiles} />}
+      {profiles && <ProfileList profiles={profiles.students} />}
     </div>
   );
 }
