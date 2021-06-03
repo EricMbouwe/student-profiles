@@ -13,29 +13,42 @@ function Profile({ data }) {
       </ProfileImg>
 
       <ProfileDetails>
-        <Name>
-          <span>{data.firstName}</span>
-          <span>{data.lastName}</span>
-        </Name>
-        <div>
-          <span>Email:</span>
-          <span>{data.email}</span>
-        </div>
-        <div>
-          <span>Company:</span>
-          <span>{data.company}</span>
-        </div>
-        <div>
-          <span>Skill:</span>
-          <span>{data.skill}</span>
-        </div>
-        <div>
-          <span>Average:</span>
-          <span>
-            {gradesAverage(data.grades)}
-            %
-          </span>
-        </div>
+        <AccordionWrap>
+          <ProfileName>
+            <span>{data.firstName}</span>
+            <span>{data.lastName}</span>
+          </ProfileName>
+          <AccordionBtn>+</AccordionBtn>
+        </AccordionWrap>
+
+        <ProfileInfos>
+          <div>
+            <span>Email:</span>
+            <span>{data.email}</span>
+          </div>
+          <div>
+            <span>Company:</span>
+            <span>{data.company}</span>
+          </div>
+          <div>
+            <span>Skill:</span>
+            <span>{data.skill}</span>
+          </div>
+          <div>
+            <span>Average:</span>
+            <span>{gradesAverage(data.grades)}</span>
+            <span>%</span>
+          </div>
+        </ProfileInfos>
+
+        <AccordionPanel>
+          {data.grades.map((grad, index) => (
+            <div key={grad}>
+              <span>{`Test ${index + 1}: `}</span>
+              <span>{`${grad}%`}</span>
+            </div>
+          ))}
+        </AccordionPanel>
       </ProfileDetails>
     </Wrap>
   );
@@ -68,17 +81,10 @@ const ProfileImg = styled.div`
 
 const ProfileDetails = styled.div`
   div:not(div:first-of-type) {
-    padding-left: 15px;
-    color: #aaa;
-    line-height: 1.5;
-
-    span:first-child {
-      margin-right: 5px;
-    }
   }
 `;
 
-const Name = styled.div`
+const ProfileName = styled.div`
   font-size: 42px;
   font-weight: 900;
   text-transform: uppercase;
@@ -86,6 +92,45 @@ const Name = styled.div`
 
   span:first-child {
     margin-right: 10px;
+  }
+`;
+
+const ProfileInfos = styled.div`
+  padding-left: 15px;
+  color: #aaa;
+  line-height: 1.5;
+
+  span:first-child {
+    margin-right: 5px;
+  }
+`;
+
+const AccordionWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const AccordionBtn = styled.button`
+  font-size: 42px;
+  border: none;
+  background-color: transparent;
+  font-weight: 900;
+  color: #aaa;
+  cursor: pointer;
+`;
+
+const AccordionPanel = styled.div`
+  margin-top: 15px;
+  overflow: hidden;
+  padding-left: 15px;
+  color: #aaa;
+  line-height: 1.5;
+  transition: max-height 0.2s ease-out;
+  //max-height: 0;
+
+  span:first-child {
+    margin-right: 5px;
   }
 `;
 
