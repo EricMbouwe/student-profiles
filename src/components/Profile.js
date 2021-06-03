@@ -49,17 +49,23 @@ const Wrap = styled.div`
 const ProfileImg = styled.div`
   width: 110px;
   height: 110px;
-  margin-right: 20px;
-  //border: 1px solid #eee;
+  margin-right: 30px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  overflow: hidden;
   
   img {
     width: 100%;
-    border: 1px solid #eee;
-    border-radius: 50%;
   }
 `;
 
-const ProfileDetails = styled.div``;
+const ProfileDetails = styled.div`
+  div:not(div:first-of-type) {
+    padding-left: 15px;
+    color: #aaa;
+    line-height: 1.5;
+  }
+`;
 
 const Name = styled.div`
   font-size: 36px;
