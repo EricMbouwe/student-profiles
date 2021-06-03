@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function Profile({ data }) {
+  const gradesAverage = (grades) => grades
+    .map((grad) => parseInt(grad, 10))
+    .reduce((acc, curr) => acc + curr, 0) / grades.length;
+
   return (
     <Wrap>
       <ProfileImg>
@@ -28,9 +32,7 @@ function Profile({ data }) {
         <div>
           <span>Average:</span>
           <span>
-            {data.grades
-              .map((grad) => parseInt(grad, 10))
-              .reduce((acc, curr) => acc + curr, 0) / data.grades.length}
+            {gradesAverage(data.grades)}
             %
           </span>
         </div>
