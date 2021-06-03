@@ -33,14 +33,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100vh;
+  height: calc(100vh - 42px);
 `;
 
 const Wrapper = styled.div`
   position: relative;
   border-radius: 10px;
   background-color: #fff;
-  padding: 10px;
+  padding: 10px 0;
   width: 100%;
   height: 500px;
   max-width: 800px;
