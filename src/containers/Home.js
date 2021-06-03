@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+import InputFilter from '../components/InputFilter';
 import ProfileList from '../components/ProfileList';
 import useFetch from '../utils/useFetch';
 
@@ -9,12 +11,61 @@ function Home() {
   } = useFetch('https://api.hatchways.io/assessment/students');
 
   return (
-    <div>
-      {error && <div>{error}</div>}
-      {loading && <div>Loading...</div>}
-      {profiles && <ProfileList profiles={profiles.students} />}
-    </div>
+    <Container>
+      <Wrapper>
+        {error && <RequestingResponse>{error}</RequestingResponse>}
+        {loading && <RequestingResponse>Loading...</RequestingResponse>}
+        {profiles && (
+          <>
+            <InputFilter />
+            <InputFilter />
+            <ProfileList profiles={profiles.students} />
+          </>
+        )}
+      </Wrapper>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  @media (max-width: 998px) {
+    padding: 20px;
+  }
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  height: 80vh;
+  max-height: 800px;
+  max-width: 800px;
+  overflow-y: scroll;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 20%), 0 2px 14px -1px rgb(0 0 0 / 16%);
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+`;
+
+const RequestingResponse = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 export default Home;
