@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import InputFilter from '../components/InputFilter';
 import ProfileList from '../components/ProfileList';
@@ -10,16 +11,32 @@ function Home() {
     error,
   } = useFetch('https://api.hatchways.io/assessment/students');
 
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+
+  const handleSearch = (val) => {
+    const value = val.toLowerCase();
+    let result = [];
+
+    const NameRegex = new RegExp(value, 'i');
+    // const Tagregex = new RegExp(value, 'i');
+
+    result = profiles.students.filter(
+      (data) => NameRegex.test(data.firstName) || NameRegex.test(data.lastName),
+    );
+
+    setFilteredProfiles(result);
+  };
+
   return (
     <Container>
       <Wrapper>
         {error && <RequestingResponse>{error}</RequestingResponse>}
         {loading && <RequestingResponse>Loading...</RequestingResponse>}
-        {profiles && (
+        {filteredProfiles && (
           <>
-            <InputFilter />
-            <InputFilter />
-            <ProfileList profiles={profiles.students} />
+            <InputFilter getSearch={handleSearch} text="Search by name" />
+            <InputFilter getSearch={handleSearch} text="Search by tag" />
+            <ProfileList profiles={filteredProfiles} />
           </>
         )}
       </Wrapper>
@@ -51,14 +68,12 @@ const Wrapper = styled.div`
   overflow-y: scroll;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 20%), 0 2px 14px -1px rgb(0 0 0 / 16%);
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const RequestingResponse = styled.div`
