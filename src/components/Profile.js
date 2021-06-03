@@ -43,7 +43,7 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
-  padding: 20px;
+  padding: 10px 20px;
 
   @media (max-width: 567px) {
     flex-direction: column;
@@ -77,7 +77,7 @@ const ProfileDetails = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 15px;
