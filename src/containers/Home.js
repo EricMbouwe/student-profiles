@@ -32,8 +32,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  height: calc(100vh - 42px);
+  height: 100vh;
+
+  @media (max-width: 998px) {
+    padding: 20px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -42,10 +45,20 @@ const Wrapper = styled.div`
   background-color: #fff;
   padding: 10px 0;
   width: 100%;
-  height: 500px;
+  height: 80vh;
+  max-height: 700px;
   max-width: 800px;
   overflow-y: scroll;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 20%), 0 2px 14px -1px rgb(0 0 0 / 16%);
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 
 const RequestingResponse = styled.div`

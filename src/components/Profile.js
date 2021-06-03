@@ -44,16 +44,21 @@ const Wrap = styled.div`
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 20px;
+
+  @media (max-width: 567px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const ProfileImg = styled.div`
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   margin-right: 30px;
   border: 1px solid #ddd;
   border-radius: 50%;
   overflow: hidden;
-  
+
   img {
     width: 100%;
   }
@@ -64,6 +69,10 @@ const ProfileDetails = styled.div`
     padding-left: 15px;
     color: #aaa;
     line-height: 1.5;
+
+    span:first-child {
+      margin-right: 5px;
+    }
   }
 `;
 
