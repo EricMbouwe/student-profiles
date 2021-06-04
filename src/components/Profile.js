@@ -49,7 +49,8 @@ function Profile({ data }) {
             <span>{data.lastName}</span>
           </ProfileName>
           <AccordionBtn onClick={toggleExpansionView} ref={accordionBtnRef}>
-            +
+            <span />
+            <span />
           </AccordionBtn>
         </AccordionWrap>
 
@@ -97,6 +98,7 @@ function Profile({ data }) {
 const Wrap = styled.div`
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   border-bottom: 1px solid #eee;
   padding: 10px 20px;
 
@@ -107,8 +109,8 @@ const Wrap = styled.div`
 `;
 
 const ProfileImg = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   margin-top: 25px;
   margin-right: 30px;
   border: 1px solid #ddd;
@@ -124,17 +126,6 @@ const ProfileDetails = styled.div`
   flex: 1;
 `;
 
-const ProfileName = styled.div`
-  font-size: 42px;
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-
-  span:first-child {
-    margin-right: 10px;
-  }
-`;
-
 const ProfileInfos = styled.div`
   padding-left: 15px;
   color: #aaa;
@@ -148,19 +139,55 @@ const ProfileInfos = styled.div`
 const AccordionWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+`;
+
+const ProfileName = styled.div`
+  font-size: 42px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+
+  span:first-child {
+    margin-right: 10px;
+  }
 `;
 
 const AccordionBtn = styled.button`
-  font-size: 42px;
   border: none;
   background-color: transparent;
-  font-weight: 900;
-  color: #aaa;
   cursor: pointer;
+  margin-top: -21px;
+
+  span {
+    display: block;
+    width: 30px;
+    height: 6px;
+    background-color: #aaa;
+    border-radius: 5px;
+    transform-origin: center;
+
+    &:first-of-type {
+      transform: rotate(90deg) translateX(6px);
+    }
+  }
 
   &.active {
-    color: green;
+    span {
+      &:first-of-type {
+        opacity: 0;
+      }
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    span {
+      background-color: #000;
+    }
   }
 `;
 

@@ -14,17 +14,32 @@ function Home() {
   const [filteredProfiles, setFilteredProfiles] = useState([]);
 
   const handleSearch = (val) => {
-    const value = val.toLowerCase();
-    let result = [];
+    const value = val.toLowerCase().trim();
+    let resultsByName = [];
+    let resultsByTag = [];
 
-    const NameRegex = new RegExp(value, 'i');
-    // const Tagregex = new RegExp(value, 'i');
+    const regex = new RegExp(value, 'i');
 
-    result = profiles.students.filter(
-      (data) => NameRegex.test(data.firstName) || NameRegex.test(data.lastName),
-    );
+    if (!value) {
+      setFilteredProfiles(profiles.students);
+    } else {
+      resultsByName = profiles.students.filter(
+        (data) => regex.test(data.firstName) || regex.test(data.lastName),
+      );
 
-    setFilteredProfiles(result);
+      resultsByTag = profiles.students.filter(
+        (data) => regex.test(data.firstName) || regex.test(data.lastName),
+      );
+
+      const results = resultsByName.concat(resultsByTag);
+      // const unique = results.filter((item, i, ar) => ar.indexOf(item) === i);
+      // const unique = [...new Set(results)];
+      const unique = [...new Set(results.map((profile) => profile))];
+
+      console.log(unique);
+
+      setFilteredProfiles(unique);
+    }
   };
 
   return (
