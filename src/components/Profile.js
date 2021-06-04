@@ -20,6 +20,14 @@ function Profile({ data }) {
     }
   };
 
+  const populateAccordionPanel = (grades) => grades.map((grad, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <div key={index}>
+      <span>{`Test ${index + 1}: `}</span>
+      <span>{`${grad}%`}</span>
+    </div>
+  ));
+
   return (
     <Wrap>
       <ProfileImg>
@@ -32,7 +40,9 @@ function Profile({ data }) {
             <span>{data.firstName}</span>
             <span>{data.lastName}</span>
           </ProfileName>
-          <AccordionBtn onClick={toggleExpansionView} ref={accordionBtnRef}>+</AccordionBtn>
+          <AccordionBtn onClick={toggleExpansionView} ref={accordionBtnRef}>
+            +
+          </AccordionBtn>
         </AccordionWrap>
 
         <ProfileInfos>
@@ -56,13 +66,7 @@ function Profile({ data }) {
         </ProfileInfos>
 
         <AccordionPanel ref={panelRef}>
-          {data.grades.map((grad, index) => (
-            // eslint-disable-next-line react/jsx-key
-            <div>
-              <span>{`Test ${index + 1}: `}</span>
-              <span>{`${grad}%`}</span>
-            </div>
-          ))}
+          {populateAccordionPanel(data.grades)}
         </AccordionPanel>
       </ProfileDetails>
     </Wrap>
@@ -71,7 +75,7 @@ function Profile({ data }) {
 
 const Wrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #eee;
   padding: 10px 20px;
 
@@ -84,6 +88,7 @@ const Wrap = styled.div`
 const ProfileImg = styled.div`
   width: 120px;
   height: 120px;
+  margin-top: 25px;
   margin-right: 30px;
   border: 1px solid #ddd;
   border-radius: 50%;
@@ -145,7 +150,7 @@ const AccordionPanel = styled.div`
   padding-left: 15px;
   color: #aaa;
   line-height: 1.5;
-  transition: max-height 0.2s ease-out;
+  transition: max-height 0.3s ease-out;
   max-height: 0;
 
   span:first-child {
