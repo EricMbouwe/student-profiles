@@ -1,10 +1,19 @@
+/* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 function Profile({ data }) {
   const panelRef = useRef();
   const accordionBtnRef = useRef();
+  const [tags, setTags] = useState(['top', 'tag']);
+  const [inputTagValue, setInputTagValue] = useState('');
+
+  const handleTagChange = (e) => {
+    const val = e.target.value;
+    setInputTagValue(val);
+    setTags([...tags, val]);
+  };
 
   const gradesAverage = (grades) => grades
     .map((grad) => parseInt(grad, 10))
@@ -21,7 +30,6 @@ function Profile({ data }) {
   };
 
   const populateAccordionPanel = (grades) => grades.map((grad, index) => (
-    // eslint-disable-next-line react/no-array-index-key
     <div key={index}>
       <span>{`Test ${index + 1}: `}</span>
       <span>{`${grad}%`}</span>
@@ -63,6 +71,19 @@ function Profile({ data }) {
             <span>{gradesAverage(data.grades)}</span>
             <span>%</span>
           </div>
+
+          <TagList>
+            {tags.map((tag, id) => (
+              <Tag key={id}>{tag}</Tag>
+            ))}
+          </TagList>
+
+          <InputTag
+            type="text"
+            value={inputTagValue}
+            placeholder="Add a tag"
+            onChange={handleTagChange}
+          />
         </ProfileInfos>
 
         <AccordionPanel ref={panelRef}>
@@ -100,8 +121,7 @@ const ProfileImg = styled.div`
 `;
 
 const ProfileDetails = styled.div`
-  div:not(div:first-of-type) {
-  }
+  flex: 1;
 `;
 
 const ProfileName = styled.div`
@@ -154,7 +174,40 @@ const AccordionPanel = styled.div`
   max-height: 0;
 
   span:first-child {
-    margin-right: 5px;
+    margin-right: 10px;
+  }
+`;
+
+const TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+`;
+
+const Tag = styled.span`
+  background-color: #eee;
+  color: #aaa;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+`;
+
+const InputTag = styled.input`
+  display: block;
+  padding: 10px 5px;
+  border: none;
+  border-bottom: 2px solid #eee;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+    border-color: #aaa;
+  }
+
+  ::placeholder {
+    font-size: 18px;
+    color: #aaa;
   }
 `;
 
