@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 function Profile({ data }) {
+  const panelRef = useRef();
+  const accordionBtnRef = useRef();
+
   const gradesAverage = (grades) => grades
     .map((grad) => parseInt(grad, 10))
     .reduce((acc, curr) => acc + curr, 0) / grades.length;
+
+  const toggleExpansionView = () => {
+    accordionBtnRef.current.classList.toggle('active');
+
+    if (panelRef.current.style.maxHeight) {
+      panelRef.current.style.maxHeight = null;
+    } else {
+      panelRef.current.style.maxHeight = `${panelRef.current.scrollHeight}px`;
+    }
+  };
 
   return (
     <Wrap>
@@ -18,7 +32,7 @@ function Profile({ data }) {
             <span>{data.firstName}</span>
             <span>{data.lastName}</span>
           </ProfileName>
-          <AccordionBtn>+</AccordionBtn>
+          <AccordionBtn onClick={toggleExpansionView} ref={accordionBtnRef}>+</AccordionBtn>
         </AccordionWrap>
 
         <ProfileInfos>
@@ -41,9 +55,10 @@ function Profile({ data }) {
           </div>
         </ProfileInfos>
 
-        <AccordionPanel>
+        <AccordionPanel ref={panelRef}>
           {data.grades.map((grad, index) => (
-            <div key={grad}>
+            // eslint-disable-next-line react/jsx-key
+            <div>
               <span>{`Test ${index + 1}: `}</span>
               <span>{`${grad}%`}</span>
             </div>
@@ -118,6 +133,10 @@ const AccordionBtn = styled.button`
   font-weight: 900;
   color: #aaa;
   cursor: pointer;
+
+  &.active {
+    color: green;
+  }
 `;
 
 const AccordionPanel = styled.div`
@@ -127,7 +146,7 @@ const AccordionPanel = styled.div`
   color: #aaa;
   line-height: 1.5;
   transition: max-height 0.2s ease-out;
-  //max-height: 0;
+  max-height: 0;
 
   span:first-child {
     margin-right: 5px;
