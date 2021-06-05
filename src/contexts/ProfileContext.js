@@ -43,15 +43,19 @@ export const ProfileProvider = ({ children }) => {
     });
   }
 
-  function filterByTag(val, profile) {
+  function filterByTag(val) {
     const value = val.toLowerCase();
     const regex = new RegExp(value, 'i');
+
+    const taggedProfiles = state.tags
+      .filter((data) => regex.test(data.text.toLowerCase()))
+      .map((x) => x.profile);
 
     dispatch({
       type: 'FILTER_BY_TAG',
       payload: {
         regex,
-        profile,
+        taggedProfiles,
       },
     });
   }

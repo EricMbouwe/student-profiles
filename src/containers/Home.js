@@ -14,7 +14,13 @@ function Home() {
     <Container>
       <Wrapper>
         {error && <RequestingResponse>{error}</RequestingResponse>}
-        {loading && <RequestingResponse>Loading...</RequestingResponse>}
+        {loading && (
+          <RequestingResponse>
+            <Loadder>
+              <i className="fa fa-refresh" aria-hidden="true" />
+            </Loadder>
+          </RequestingResponse>
+        )}
         {filteredProfiles && (
           <>
             <InputFilter text="Search by name" type="NAME" />
@@ -64,6 +70,24 @@ const RequestingResponse = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const Loadder = styled.span`
+  font-size: 40px;
+  color: #aaa;
+
+  i {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export default Home;

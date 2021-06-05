@@ -17,9 +17,7 @@ export default (state, action) => {
     case 'FILTER_BY_TAG':
       return {
         ...state,
-        filteredProfiles: state.profiles.filter(
-          (data) => action.payload.regex.test(data.lastName.toLowerCase()),
-        ),
+        filteredProfiles: action.payload.taggedProfiles,
       };
     case 'ADD_TAG':
       return {
