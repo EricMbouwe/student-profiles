@@ -17,7 +17,10 @@ export default (state, action) => {
     case 'FILTER_BY_TAG':
       return {
         ...state,
-        filteredProfiles: action.payload.taggedProfiles,
+        filteredProfiles: state.profiles.filter((data) => state.tags.some(
+          (tagged) => data.id === tagged.profile.id
+              && action.payload.regex.test(tagged.text.toLowerCase()),
+        )),
       };
     case 'ADD_TAG':
       return {

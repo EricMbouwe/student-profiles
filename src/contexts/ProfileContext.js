@@ -32,7 +32,7 @@ export const ProfileProvider = ({ children }) => {
   }, [data]);
 
   function filterByName(val) {
-    const value = val.toLowerCase();
+    const value = val.toLowerCase().replace(/\s/g, '');
     const regex = new RegExp(value, 'i');
 
     dispatch({
@@ -44,18 +44,13 @@ export const ProfileProvider = ({ children }) => {
   }
 
   function filterByTag(val) {
-    const value = val.toLowerCase();
+    const value = val.toLowerCase().replace(/\s/g, '');
     const regex = new RegExp(value, 'i');
-
-    const taggedProfiles = state.tags
-      .filter((data) => regex.test(data.text.toLowerCase()))
-      .map((x) => x.profile);
 
     dispatch({
       type: 'FILTER_BY_TAG',
       payload: {
         regex,
-        taggedProfiles,
       },
     });
   }

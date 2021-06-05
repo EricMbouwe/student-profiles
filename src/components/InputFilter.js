@@ -12,7 +12,7 @@ function InputFilter({ text, type }) {
     setInputValue(val);
     if (type === 'NAME') {
       filterByName(val);
-    } else {
+    } else if (type === 'TAG') {
       filterByTag(val);
     }
   };
