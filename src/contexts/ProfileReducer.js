@@ -1,15 +1,17 @@
 export default (state, action) => {
   switch (action.type) {
-    case 'GET_PROFILES':
+    case 'SET_PROFILES_DATA':
       return {
         ...state,
         profiles: action.payload.students,
+        filteredProfiles: action.payload.students,
       };
-    case 'DELETE_TRANSACTION':
+    case 'FILTER_BY_NAME':
       return {
         ...state,
-        transactions: state.transactions.filter(
-          (transaction) => transaction.id !== action.payload,
+        filteredProfiles: state.profiles.filter(
+          (data) => action.payload.regex.test(data.firstName)
+            || action.payload.regex.test(data.lastName),
         ),
       };
     case 'ADD_TRANSACTION':

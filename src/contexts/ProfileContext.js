@@ -5,6 +5,7 @@ import useFetch from '../utils/useFetch';
 
 const initialState = {
   profiles: [],
+  filteredProfiles: [],
 };
 
 export const ProfileContext = createContext(initialState);
@@ -17,25 +18,29 @@ export const ProfileProvider = ({ children }) => {
     'https://api.hatchways.io/assessment/students',
   );
 
-  function fetchProfiles() {
+  function saveProfilesData() {
     dispatch({
-      type: 'GET_PROFILES',
+      type: 'SET_PROFILES_DATA',
       payload: data,
     });
   }
 
   useEffect(() => {
-    fetchProfiles();
-  }, []);
-
-  console.log(data);
+    if (data) {
+      saveProfilesData();
+    }
+  }, [data]);
 
   // Actions
+  function filterByName(val) {
+    const value = val.toLowerCase();
+    const regex = new RegExp(value, 'i');
 
-  function deleteTransaction(id) {
     dispatch({
-      type: 'DELETE_TRANSACTION',
-      payload: id,
+      type: 'FILTER_BY_NAME',
+      payload: {
+        regex,
+      },
     });
   }
 
@@ -50,10 +55,10 @@ export const ProfileProvider = ({ children }) => {
     <ProfileContext.Provider
       value={{
         profiles: state.profiles,
+        filteredProfiles: state.filteredProfiles,
         loading,
         error,
-        fetchProfiles,
-        deleteTransaction,
+        filterByName,
         addTransaction,
       }}
     >

@@ -5,47 +5,21 @@ import ProfileList from '../components/ProfileList';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function Home() {
-  const { profiles, loading, error } = useContext(ProfileContext);
+  const { filteredProfiles, loading, error } = useContext(ProfileContext);
 
-  const handleSearch = (val) => {
-    const value = val.toLowerCase().trim();
-    let resultsByName = [];
-    let resultsByTag = [];
-    let unique = [];
-
-    const regex = new RegExp(value, 'i');
-
-    if (!value) {
-      // setFilteredProfiles(profiles.students);
-    } else {
-      resultsByName = profiles.students.filter(
-        (data) => regex.test(data.firstName) || regex.test(data.lastName),
-      );
-
-      resultsByTag = profiles.students.filter(
-        (data) => regex.test(data.firstName) || regex.test(data.lastName),
-      );
-
-      const results = resultsByName.concat(resultsByTag);
-      // const unique = results.filter((item, i, ar) => ar.indexOf(item) === i);
-      // const unique = [...new Set(results)];
-      unique = [...new Set(results.map((profile) => profile))];
-
-      // setFilteredProfiles(unique);
-    }
-    return unique;
-  };
-
+  // const unique = results.filter((item, i, ar) => ar.indexOf(item) === i);
+  // const unique = [...new Set(results)];
+  // unique = [...new Set(results.map((profile) => profile))];
   return (
     <Container>
       <Wrapper>
         {error && <RequestingResponse>{error}</RequestingResponse>}
         {loading && <RequestingResponse>Loading...</RequestingResponse>}
-        {profiles && (
+        {filteredProfiles && (
           <>
-            <InputFilter getSearch={handleSearch} text="Search by name" />
-            <InputFilter getSearch={handleSearch} text="Search by tag" />
-            <ProfileList profiles={profiles} />
+            <InputFilter text="Search by name" />
+            <InputFilter text="Search by tag" />
+            <ProfileList profiles={filteredProfiles} />
           </>
         )}
       </Wrapper>

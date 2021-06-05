@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { ProfileContext } from '../contexts/ProfileContext';
 
-function InputFilter({ getSearch, text }) {
+function InputFilter({ text }) {
   const [inputValue, setInputValue] = useState('');
+  const { filterByName } = useContext(ProfileContext);
 
   const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
-    getSearch(val);
+    filterByName(inputValue);
   };
 
   return (
@@ -45,7 +47,6 @@ const InputField = styled.input`
 `;
 
 InputFilter.propTypes = {
-  getSearch: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 
