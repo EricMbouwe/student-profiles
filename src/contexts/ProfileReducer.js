@@ -15,13 +15,22 @@ export default (state, action) => {
         ),
       };
     case 'FILTER_BY_TAG':
-      return {
-        ...state,
-        filteredProfiles: state.profiles.filter((data) => state.tags.some(
-          (tagged) => data.id === tagged.profile.id
-              && action.payload.regex.test(tagged.text.toLowerCase()),
-        )),
-      };
+      if (state.tags.length > 0 && action.payload.value === '') {
+        return {
+          ...state,
+          filteredProfiles: state.profiles,
+        };
+      }
+      if (state.tags.length > 0) {
+        return {
+          ...state,
+          filteredProfiles: state.profiles.filter((data) => state.tags.some(
+            (tagged) => data.id === tagged.profile.id
+                && action.payload.regex.test(tagged.text.toLowerCase()),
+          )),
+        };
+      }
+      break;
     case 'ADD_TAG':
       return {
         ...state,
@@ -30,4 +39,5 @@ export default (state, action) => {
     default:
       return state;
   }
+  return state;
 };

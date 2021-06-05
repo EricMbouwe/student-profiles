@@ -51,8 +51,12 @@ export const ProfileProvider = ({ children }) => {
       type: 'FILTER_BY_TAG',
       payload: {
         regex,
+        value,
       },
     });
+
+    console.log('INPUT TAG VALUE:', value);
+    console.log('TAGLIST:', state.tags);
   }
 
   function addToTags(tag) {
