@@ -1,9 +1,12 @@
 import Home from './containers/Home';
+import { ProfileProvider } from './contexts/ProfileContext';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
+    <div>
+      <ProfileProvider>
+        <Home />
+      </ProfileProvider>
     </div>
   );
 }

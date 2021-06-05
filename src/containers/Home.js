@@ -1,27 +1,22 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import InputFilter from '../components/InputFilter';
 import ProfileList from '../components/ProfileList';
-import useFetch from '../utils/useFetch';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 function Home() {
-  const {
-    data: profiles,
-    loading,
-    error,
-  } = useFetch('https://api.hatchways.io/assessment/students');
-
-  const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const { profiles, loading, error } = useContext(ProfileContext);
 
   const handleSearch = (val) => {
     const value = val.toLowerCase().trim();
     let resultsByName = [];
     let resultsByTag = [];
+    let unique = [];
 
     const regex = new RegExp(value, 'i');
 
     if (!value) {
-      setFilteredProfiles(profiles.students);
+      // setFilteredProfiles(profiles.students);
     } else {
       resultsByName = profiles.students.filter(
         (data) => regex.test(data.firstName) || regex.test(data.lastName),
@@ -34,12 +29,11 @@ function Home() {
       const results = resultsByName.concat(resultsByTag);
       // const unique = results.filter((item, i, ar) => ar.indexOf(item) === i);
       // const unique = [...new Set(results)];
-      const unique = [...new Set(results.map((profile) => profile))];
+      unique = [...new Set(results.map((profile) => profile))];
 
-      console.log(unique);
-
-      setFilteredProfiles(unique);
+      // setFilteredProfiles(unique);
     }
+    return unique;
   };
 
   return (
@@ -47,11 +41,11 @@ function Home() {
       <Wrapper>
         {error && <RequestingResponse>{error}</RequestingResponse>}
         {loading && <RequestingResponse>Loading...</RequestingResponse>}
-        {filteredProfiles && (
+        {profiles && (
           <>
             <InputFilter getSearch={handleSearch} text="Search by name" />
             <InputFilter getSearch={handleSearch} text="Search by tag" />
-            <ProfileList profiles={filteredProfiles} />
+            <ProfileList profiles={profiles} />
           </>
         )}
       </Wrapper>
