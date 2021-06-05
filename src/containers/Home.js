@@ -17,8 +17,8 @@ function Home() {
         {loading && <RequestingResponse>Loading...</RequestingResponse>}
         {filteredProfiles && (
           <>
-            <InputFilter text="Search by name" />
-            <InputFilter text="Search by tag" />
+            <InputFilter text="Search by name" type="NAME" />
+            <InputFilter text="Search by tag" type="TAG" />
             <ProfileList profiles={filteredProfiles} />
           </>
         )}

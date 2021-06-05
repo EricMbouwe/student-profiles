@@ -1,6 +1,6 @@
 export default (state, action) => {
   switch (action.type) {
-    case 'SET_PROFILES_DATA':
+    case 'SAVE_PROFILES_DATA':
       return {
         ...state,
         profiles: action.payload.students,
@@ -10,14 +10,21 @@ export default (state, action) => {
       return {
         ...state,
         filteredProfiles: state.profiles.filter(
-          (data) => action.payload.regex.test(data.firstName)
-            || action.payload.regex.test(data.lastName),
+          (data) => action.payload.regex.test(data.firstName.toLowerCase())
+            || action.payload.regex.test(data.lastName.toLowerCase()),
         ),
       };
-    case 'ADD_TRANSACTION':
+    case 'FILTER_BY_TAG':
       return {
         ...state,
-        transactions: [action.payload, ...state.transactions],
+        filteredProfiles: state.profiles.filter(
+          (data) => action.payload.regex.test(data.lastName.toLowerCase()),
+        ),
+      };
+    case 'ADD_TAG':
+      return {
+        ...state,
+        tags: [...state.tags, action.payload],
       };
     default:
       return state;

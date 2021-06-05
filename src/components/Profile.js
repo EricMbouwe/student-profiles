@@ -1,18 +1,34 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import styled from 'styled-components';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 function Profile({ data }) {
   const panelRef = useRef();
   const accordionBtnRef = useRef();
-  const [tags, setTags] = useState(['top', 'tag']);
   const [inputTagValue, setInputTagValue] = useState('');
+  const [tags, setTags] = useState([]);
+
+  const { addToTags } = useContext(ProfileContext);
 
   const handleTagChange = (e) => {
     const val = e.target.value;
     setInputTagValue(val);
-    setTags([...tags, val]);
+  };
+
+  const addTag = (e) => {
+    if (e.keyCode === 13 && inputTagValue !== '') {
+      const tag = {
+        id: Math.floor(Math.random() * 100000000),
+        text: inputTagValue,
+        profile: data,
+      };
+
+      setTags([...tags, tag]);
+      addToTags(tag);
+      setInputTagValue('');
+    }
   };
 
   const gradesAverage = (grades) => grades
@@ -74,8 +90,8 @@ function Profile({ data }) {
           </div>
 
           <TagList>
-            {tags.map((tag, id) => (
-              <Tag key={id}>{tag}</Tag>
+            {tags.map((tag) => (
+              <Tag key={tag.id}>{tag.text}</Tag>
             ))}
           </TagList>
 
@@ -84,6 +100,7 @@ function Profile({ data }) {
             value={inputTagValue}
             placeholder="Add a tag"
             onChange={handleTagChange}
+            onKeyDown={addTag}
           />
         </ProfileInfos>
 

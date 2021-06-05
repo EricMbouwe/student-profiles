@@ -6,11 +6,11 @@ import useFetch from '../utils/useFetch';
 const initialState = {
   profiles: [],
   filteredProfiles: [],
+  tags: [],
 };
 
 export const ProfileContext = createContext(initialState);
 
-// Provider component
 export const ProfileProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProfileReducer, initialState);
 
@@ -20,7 +20,7 @@ export const ProfileProvider = ({ children }) => {
 
   function saveProfilesData() {
     dispatch({
-      type: 'SET_PROFILES_DATA',
+      type: 'SAVE_PROFILES_DATA',
       payload: data,
     });
   }
@@ -31,7 +31,6 @@ export const ProfileProvider = ({ children }) => {
     }
   }, [data]);
 
-  // Actions
   function filterByName(val) {
     const value = val.toLowerCase();
     const regex = new RegExp(value, 'i');
@@ -44,10 +43,23 @@ export const ProfileProvider = ({ children }) => {
     });
   }
 
-  function addTransaction(transaction) {
+  function filterByTag(val, profile) {
+    const value = val.toLowerCase();
+    const regex = new RegExp(value, 'i');
+
     dispatch({
-      type: 'ADD_TRANSACTION',
-      payload: transaction,
+      type: 'FILTER_BY_TAG',
+      payload: {
+        regex,
+        profile,
+      },
+    });
+  }
+
+  function addToTags(tag) {
+    dispatch({
+      type: 'ADD_TAG',
+      payload: tag,
     });
   }
 
@@ -59,7 +71,8 @@ export const ProfileProvider = ({ children }) => {
         loading,
         error,
         filterByName,
-        addTransaction,
+        filterByTag,
+        addToTags,
       }}
     >
       {children}

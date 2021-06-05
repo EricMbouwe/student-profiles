@@ -3,14 +3,18 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
-function InputFilter({ text }) {
+function InputFilter({ text, type }) {
   const [inputValue, setInputValue] = useState('');
-  const { filterByName } = useContext(ProfileContext);
+  const { filterByName, filterByTag } = useContext(ProfileContext);
 
   const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
-    filterByName(inputValue);
+    if (type === 'NAME') {
+      filterByName(val);
+    } else {
+      filterByTag(val);
+    }
   };
 
   return (
@@ -48,6 +52,7 @@ const InputField = styled.input`
 
 InputFilter.propTypes = {
   text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default InputFilter;
