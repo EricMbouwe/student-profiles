@@ -54,9 +54,6 @@ export const ProfileProvider = ({ children }) => {
         value,
       },
     });
-
-    console.log('INPUT TAG VALUE:', value);
-    console.log('TAGLIST:', state.tags);
   }
 
   function addToTags(tag) {

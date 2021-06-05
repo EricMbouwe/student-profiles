@@ -7,9 +7,6 @@ import { ProfileContext } from '../contexts/ProfileContext';
 function Home() {
   const { filteredProfiles, loading, error } = useContext(ProfileContext);
 
-  // const unique = results.filter((item, i, ar) => ar.indexOf(item) === i);
-  // const unique = [...new Set(results)];
-  // unique = [...new Set(results.map((profile) => profile))];
   return (
     <Container>
       <Wrapper>
@@ -23,8 +20,10 @@ function Home() {
         )}
         {filteredProfiles && (
           <>
-            <InputFilter text="Search by name" type="NAME" />
-            <InputFilter text="Search by tag" type="TAG" />
+            <Header>
+              <InputFilter text="Search by name" type="NAME" />
+              <InputFilter text="Search by tag" type="TAG" />
+            </Header>
             <ProfileList profiles={filteredProfiles} />
           </>
         )}
@@ -49,7 +48,6 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 10px;
   background-color: #fff;
-  padding: 10px 0;
   width: 100%;
   height: 80vh;
   max-height: 800px;
@@ -63,6 +61,15 @@ const Wrapper = styled.div`
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+`;
+
+const Header = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
 `;
 
 const RequestingResponse = styled.div`

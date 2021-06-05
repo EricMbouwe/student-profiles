@@ -33,7 +33,7 @@ const InputField = styled.input`
   display: block;
   width: 98%;
   margin: 0 auto;
-  padding: 10px 5px;
+  padding: 15px 5px;
   border: none;
   border-bottom: 2px solid #eee;
   margin-bottom: 10px;
