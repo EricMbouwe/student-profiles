@@ -212,8 +212,8 @@ const AccordionPanel = styled.div`
   margin-top: 15px;
   overflow: hidden;
   padding-left: 15px;
-  color: #aaa;
   line-height: 1.5;
+  font-weight: 200;
   transition: max-height 0.3s ease-out;
   max-height: 0;
 
@@ -230,7 +230,6 @@ const TagList = styled.div`
 
 const Tag = styled.span`
   background-color: #ddd;
-  color: #000;
   padding: 8px;
   margin-right: 5px;
   margin-bottom: 5px;
