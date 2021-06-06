@@ -14,7 +14,7 @@ The app is using [Hatchways API](https://api.hatchways.io/assessment/students) a
 
 ## Live Demo
 
-Please check [live demo of the project.](https://)
+Please check [live demo of the project.](https://student-profiles-ericmbouwe.netlify.app/)
 
 ## Getting Started
 
