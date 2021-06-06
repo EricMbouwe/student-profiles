@@ -59,6 +59,11 @@ const Wrapper = styled.div`
     display: none;
   }
 
+  ::-webkit-scrollbar-thumb {
+    background: #777;
+    border-radius: 10px;
+  }
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 `;
