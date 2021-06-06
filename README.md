@@ -11,7 +11,7 @@ The project includes these features:
 
 The app is using [Hatchways API](https://api.hatchways.io/assessment/students) as API.
 
-![screenshot](./public/)
+![screenshot](./public/student-profiles.png)
 
 ## Live Demo
 
