@@ -1,7 +1,8 @@
 # STUDENTS PROFILES
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-It is a list of student's profiles that you can filter by name or by tags
+It is a list of student's profiles that you can filter by name or by tags.
+
 The project includes these features:
 
 - A List of student profiles  
