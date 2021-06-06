@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
@@ -7,7 +7,7 @@ function InputFilter({ text, type }) {
   const [inputValue, setInputValue] = useState('');
   const { filterByName, filterByTag } = useContext(ProfileContext);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const val = e.target.value;
     setInputValue(val);
     if (type === 'NAME') {
@@ -15,7 +15,7 @@ function InputFilter({ text, type }) {
     } else if (type === 'TAG') {
       filterByTag(val);
     }
-  };
+  });
 
   return (
     <div>
