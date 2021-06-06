@@ -31,9 +31,14 @@ export const ProfileProvider = ({ children }) => {
     }
   }, [data]);
 
-  function filterByName(val) {
-    const value = val.toLowerCase().replace(/\s/g, '');
+  function formatSearchInput(input) {
+    const value = input.toLowerCase().replace(/\s/g, '');
     const regex = new RegExp(value, 'i');
+    return regex;
+  }
+
+  function filterByName(val) {
+    const regex = formatSearchInput(val);
 
     dispatch({
       type: 'FILTER_BY_NAME',
@@ -44,8 +49,8 @@ export const ProfileProvider = ({ children }) => {
   }
 
   function filterByTag(val) {
+    const regex = formatSearchInput(val);
     const value = val.toLowerCase().replace(/\s/g, '');
-    const regex = new RegExp(value, 'i');
 
     dispatch({
       type: 'FILTER_BY_TAG',
