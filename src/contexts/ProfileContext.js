@@ -56,6 +56,19 @@ export const ProfileProvider = ({ children }) => {
     });
   }
 
+  function filterAll(val) {
+    const value = val.toLowerCase().replace(/\s/g, '');
+    const regex = new RegExp(value, 'i');
+
+    dispatch({
+      type: 'FILTER_ALL',
+      payload: {
+        regex,
+        value,
+      },
+    });
+  }
+
   function addToTags(tag) {
     dispatch({
       type: 'ADD_TAG',
@@ -72,6 +85,7 @@ export const ProfileProvider = ({ children }) => {
         error,
         filterByName,
         filterByTag,
+        filterAll,
         addToTags,
       }}
     >

@@ -31,6 +31,13 @@ export default (state, action) => {
         };
       }
       break;
+    case 'FILTER_ALL':
+      return {
+        ...state,
+        filteredProfiles: state.filteredProfiles
+          .concat(state.profiles)
+          .filter((value, index, self) => self.indexOf(value) === index),
+      };
     case 'ADD_TAG':
       return {
         ...state,

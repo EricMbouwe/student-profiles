@@ -1,21 +1,23 @@
 import PropTypes from 'prop-types';
-import { useState, useContext, useCallback } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function InputFilter({ text, type }) {
   const [inputValue, setInputValue] = useState('');
-  const { filterByName, filterByTag } = useContext(ProfileContext);
+  const { filterByName, filterByTag, filterAll } = useContext(ProfileContext);
 
-  const handleChange = useCallback((e) => {
+  const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
     if (type === 'NAME') {
       filterByName(val);
+      filterAll(val);
     } else if (type === 'TAG') {
       filterByTag(val);
+      filterAll(val);
     }
-  });
+  };
 
   return (
     <div>

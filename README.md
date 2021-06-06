@@ -5,6 +5,7 @@ It is a list of student's profiles that you can filter by name or by tags
 The project includes these features:
 
 - A List of student profiles  
+- Add tags to profiles
 - Filtering profiles by names and by tag
 - Display grades list in an expandable view (accordion)
 
@@ -14,7 +15,7 @@ The app is using [Hatchways API](https://api.hatchways.io/assessment/students) a
 
 ## Live Demo
 
-Please check [live demo of the project.](https://student-profiles-ericmbouwe.netlify.app/)
+Please check [LIVE DEMO](https://student-profiles-ericmbouwe.netlify.app/)
 
 ## Getting Started
 
@@ -40,9 +41,9 @@ Make sure Node.js is running on your local machine.
 
 - Clone this repository
 - Open terminal
-- Change directory by using `cd cryptos`
+- Change directory by using `cd student-profiles`
 - Run `npm install`
-- Run `npm test` to test all files
+- Run `npm test` to run all tests
 
 # Authors
 
