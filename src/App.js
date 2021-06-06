@@ -1,9 +1,13 @@
-import Home from './containers/Home';
+import Home from './pages/Home';
+import { ProfileProvider } from './contexts/ProfileContext';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
+    <div>
+      <span>Home</span>
+      <ProfileProvider>
+        <Home />
+      </ProfileProvider>
     </div>
   );
 }

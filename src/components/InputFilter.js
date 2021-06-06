@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { ProfileContext } from '../contexts/ProfileContext';
 
-function InputFilter({ getSearch, text }) {
+function InputFilter({ text, type }) {
   const [inputValue, setInputValue] = useState('');
+  const { filterByName, filterByTag } = useContext(ProfileContext);
 
   const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
-    getSearch(val);
+    if (type === 'NAME') {
+      filterByName(val);
+    } else if (type === 'TAG') {
+      filterByTag(val);
+    }
   };
 
   return (
@@ -27,26 +33,25 @@ const InputField = styled.input`
   display: block;
   width: 98%;
   margin: 0 auto;
-  padding: 10px 5px;
+  padding: 14px 5px;
   border: none;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
   font-size: 18px;
 
   &:focus {
     outline: none;
-    border-color: #aaa;
+    border-color: #777;
   }
 
   ::placeholder {
-    font-size: 18px;
-    color: #aaa;
+    color: #777;
   }
 `;
 
 InputFilter.propTypes = {
-  getSearch: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default InputFilter;

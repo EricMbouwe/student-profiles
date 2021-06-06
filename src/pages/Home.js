@@ -1,41 +1,29 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import InputFilter from '../components/InputFilter';
 import ProfileList from '../components/ProfileList';
-import useFetch from '../utils/useFetch';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 function Home() {
-  const {
-    data: profiles,
-    loading,
-    error,
-  } = useFetch('https://api.hatchways.io/assessment/students');
-
-  const [filteredProfiles, setFilteredProfiles] = useState([]);
-
-  const handleSearch = (val) => {
-    const value = val.toLowerCase();
-    let result = [];
-
-    const NameRegex = new RegExp(value, 'i');
-    // const Tagregex = new RegExp(value, 'i');
-
-    result = profiles.students.filter(
-      (data) => NameRegex.test(data.firstName) || NameRegex.test(data.lastName),
-    );
-
-    setFilteredProfiles(result);
-  };
+  const { filteredProfiles, loading, error } = useContext(ProfileContext);
 
   return (
     <Container>
       <Wrapper>
         {error && <RequestingResponse>{error}</RequestingResponse>}
-        {loading && <RequestingResponse>Loading...</RequestingResponse>}
+        {loading && (
+          <RequestingResponse>
+            <Loadder>
+              <i className="fa fa-refresh" aria-hidden="true" />
+            </Loadder>
+          </RequestingResponse>
+        )}
         {filteredProfiles && (
           <>
-            <InputFilter getSearch={handleSearch} text="Search by name" />
-            <InputFilter getSearch={handleSearch} text="Search by tag" />
+            <Header>
+              <InputFilter text="Search by name" type="NAME" />
+              <InputFilter text="Search by tag" type="TAG" />
+            </Header>
             <ProfileList profiles={filteredProfiles} />
           </>
         )}
@@ -60,7 +48,6 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 10px;
   background-color: #fff;
-  padding: 10px 0;
   width: 100%;
   height: 80vh;
   max-height: 800px;
@@ -76,11 +63,38 @@ const Wrapper = styled.div`
   scrollbar-width: none;
 `;
 
+const Header = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
+`;
+
 const RequestingResponse = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const Loadder = styled.span`
+  font-size: 40px;
+  color: #aaa;
+
+  i {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export default Home;
