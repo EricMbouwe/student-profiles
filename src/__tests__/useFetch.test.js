@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../pages/Home';
+import useFetch from '../utils/useFetch';
 
-// Rendu
 test('renders Home Title', () => {
-  render(<Home />);
+  render(<useFetch />);
   const titleElement = screen.getByText(/Home/i);
   expect(titleElement).toBeInTheDocument();
 });

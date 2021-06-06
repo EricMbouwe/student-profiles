@@ -14,8 +14,9 @@ afterEach(() => {
   container = null;
 });
 
+// Rendu
 test('renders Home Title', () => {
-  render(<App />);
+  render(<App />, container);
   const titleElement = screen.getByText(/Home/i);
   expect(titleElement).toBeInTheDocument();
 });

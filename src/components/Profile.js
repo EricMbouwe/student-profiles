@@ -145,7 +145,7 @@ const ProfileDetails = styled.div`
 
 const ProfileInfos = styled.div`
   padding-left: 15px;
-  color: #aaa;
+  font-weight: 200;
   line-height: 1.5;
 
   span:first-child {
@@ -229,9 +229,9 @@ const TagList = styled.div`
 `;
 
 const Tag = styled.span`
-  background-color: #eee;
-  color: #aaa;
-  padding: 5px;
+  background-color: #ddd;
+  color: #000;
+  padding: 8px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 5px;
@@ -241,16 +241,16 @@ const InputTag = styled.input`
   display: block;
   padding: 10px 5px;
   border: none;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid #ccc;
   font-size: 16px;
+  font-weight: 200;
 
   &:focus {
     outline: none;
-    border-color: #aaa;
+    border-color: #777;
   }
 
   ::placeholder {
-    font-size: 18px;
     color: #aaa;
   }
 `;

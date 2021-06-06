@@ -5,17 +5,15 @@ import { ProfileContext } from '../contexts/ProfileContext';
 
 function InputFilter({ text, type }) {
   const [inputValue, setInputValue] = useState('');
-  const { filterByName, filterByTag, filterAll } = useContext(ProfileContext);
+  const { filterByName, filterByTag } = useContext(ProfileContext);
 
   const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
     if (type === 'NAME') {
       filterByName(val);
-      filterAll(val);
     } else if (type === 'TAG') {
       filterByTag(val);
-      filterAll(val);
     }
   };
 
@@ -35,20 +33,19 @@ const InputField = styled.input`
   display: block;
   width: 98%;
   margin: 0 auto;
-  padding: 15px 5px;
+  padding: 14px 5px;
   border: none;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
   font-size: 18px;
 
   &:focus {
     outline: none;
-    border-color: #aaa;
+    border-color: #777;
   }
 
   ::placeholder {
-    font-size: 18px;
-    color: #aaa;
+    color: #777;
   }
 `;
 

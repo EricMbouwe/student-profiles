@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../pages/Home';
+import { ProfileProvider } from '../contexts/ProfileContext';
 
-// Rendu
 test('renders Home Title', () => {
-  render(<Home />);
+  render(<ProfileProvider />);
   const titleElement = screen.getByText(/Home/i);
   expect(titleElement).toBeInTheDocument();
 });
