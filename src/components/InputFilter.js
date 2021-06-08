@@ -49,8 +49,12 @@ const InputField = styled.input`
   }
 `;
 
+InputFilter.defaultProps = {
+  text: 'Search',
+};
+
 InputFilter.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   type: PropTypes.string.isRequired,
 };
 

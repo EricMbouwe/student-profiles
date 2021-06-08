@@ -46,6 +46,10 @@ Make sure Node.js is running on your local machine.
 - Run `npm install`
 - Run `npm test` to run all tests
 
+## Note
+
+I started this project 4 days ago and for some reason beyond my control I was not able to work on it the first 3 days after the activation of the evaluation. I actually had a few power issues which luckily have already been fixed.
+
 # Authors
 
 Reach out to me at one of the following places!

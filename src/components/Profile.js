@@ -61,10 +61,14 @@ function Profile({ data }) {
       <ProfileDetails>
         <AccordionWrap>
           <ProfileName>
-            <span>{data.firstName}</span>
+            <span id="firstName">{data.firstName}</span>
             <span>{data.lastName}</span>
           </ProfileName>
-          <AccordionBtn onClick={toggleExpansionView} ref={accordionBtnRef}>
+          <AccordionBtn
+            data-testid="toggle"
+            onClick={toggleExpansionView}
+            ref={accordionBtnRef}
+          >
             <span />
             <span />
           </AccordionBtn>
@@ -254,8 +258,22 @@ const InputTag = styled.input`
   }
 `;
 
+Profile.defaultProps = {
+  data: {
+    city: 'Fushë-Muhurr',
+    company: 'Yadel',
+    email: 'iorton0@imdb.com',
+    firstName: 'Ingaberg',
+    grades: ['78', '100', '92', '86', '89', '88', '91', '87'],
+    id: '1',
+    lastName: 'Orton',
+    pic: 'https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/frontend/images/voluptasdictablanditiis.jpg',
+    skill: 'Oracle',
+  },
+};
+
 Profile.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  data: PropTypes.oneOfType([PropTypes.object]),
 };
 
 export default Profile;
