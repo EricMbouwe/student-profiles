@@ -55,7 +55,7 @@ function Profile({ data }) {
   return (
     <Wrap>
       <ProfileImg>
-        <img src={data.pic} alt="profile img desc" />
+        <img src={data.pic} alt={`${data.firstName} ${data.lastName}`} />
       </ProfileImg>
 
       <ProfileDetails>
