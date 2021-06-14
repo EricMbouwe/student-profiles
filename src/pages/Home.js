@@ -66,6 +66,10 @@ const Wrapper = styled.div`
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  @media (max-width: 640px) {
+    height: 100vh;
+  }
 `;
 
 const Header = styled.div`
