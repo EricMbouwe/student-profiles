@@ -178,6 +178,10 @@ const ProfileName = styled.div`
   span:first-child {
     margin-right: 10px;
   }
+
+  @media (max-width: 640px) {
+    font-size: 20px;
+  }
 `;
 
 const AccordionBtn = styled.button`
@@ -196,6 +200,10 @@ const AccordionBtn = styled.button`
 
     &:first-of-type {
       transform: rotate(90deg) translateX(6px);
+    }
+
+    @media (max-width: 640px) {
+      width: 20px;
     }
   }
 
