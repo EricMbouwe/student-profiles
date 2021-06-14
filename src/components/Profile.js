@@ -10,10 +10,11 @@ function Profile({ data }) {
   const panelRef = useRef();
   const accordionBtnRef = useRef();
   const [inputTagValue, setInputTagValue] = useState('');
-  const [tags, setTags] = useState([]);
   const { grades } = data;
 
-  const { addToTags } = useContext(ProfileContext);
+  const { addToTags, tags } = useContext(ProfileContext);
+
+  const profileTags = tags.filter((tag) => tag.profile.id === data.id);
 
   const handleTagChange = (e) => {
     const val = e.target.value;
@@ -28,18 +29,15 @@ function Profile({ data }) {
         profile: data,
       };
 
-      setTags([...tags, tag]);
       addToTags(tag);
       setInputTagValue('');
     }
   };
 
   const gradesAverage = useMemo(
-    () => (
-      grades
-        .map((grad) => parseInt(grad, 10))
-        .reduce((acc, curr) => acc + curr, 0) / grades.length
-    ),
+    () => grades
+      .map((grad) => parseInt(grad, 10))
+      .reduce((acc, curr) => acc + curr, 0) / grades.length,
     [grades],
   );
 
@@ -102,7 +100,7 @@ function Profile({ data }) {
           </div>
 
           <TagList>
-            {tags.map((tag) => (
+            {profileTags.map((tag) => (
               <Tag key={tag.id}>{tag.text}</Tag>
             ))}
           </TagList>
