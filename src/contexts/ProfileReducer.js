@@ -11,7 +11,10 @@ export default (state, action) => {
         ...state,
         filteredProfiles: state.profiles.filter(
           (data) => action.payload.regex.test(data.firstName.toLowerCase())
-            || action.payload.regex.test(data.lastName.toLowerCase()),
+            || action.payload.regex.test(data.lastName.toLowerCase())
+            || action.payload.regex.test(
+              `${data.firstName.toLowerCase()}${data.lastName.toLowerCase()}`,
+            ),
         ),
       };
     case 'FILTER_BY_TAG':

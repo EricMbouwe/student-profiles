@@ -73,6 +73,7 @@ export const ProfileProvider = ({ children }) => {
       value={{
         profiles: state.profiles,
         filteredProfiles: state.filteredProfiles,
+        tags: state.tags,
         loading,
         error,
         filterByName,
