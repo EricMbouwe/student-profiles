@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { useRef, useState, useContext } from 'react';
+import {
+  useRef, useState, useContext, useMemo,
+} from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
@@ -9,6 +11,7 @@ function Profile({ data }) {
   const accordionBtnRef = useRef();
   const [inputTagValue, setInputTagValue] = useState('');
   const [tags, setTags] = useState([]);
+  const { grades } = data;
 
   const { addToTags } = useContext(ProfileContext);
 
@@ -31,9 +34,14 @@ function Profile({ data }) {
     }
   };
 
-  const gradesAverage = (grades) => grades
-    .map((grad) => parseInt(grad, 10))
-    .reduce((acc, curr) => acc + curr, 0) / grades.length;
+  const gradesAverage = useMemo(
+    () => (
+      grades
+        .map((grad) => parseInt(grad, 10))
+        .reduce((acc, curr) => acc + curr, 0) / grades.length
+    ),
+    [grades],
+  );
 
   const toggleExpansionView = () => {
     accordionBtnRef.current.classList.toggle('active');
@@ -89,7 +97,7 @@ function Profile({ data }) {
           </div>
           <div>
             <span>Average:</span>
-            <span>{gradesAverage(data.grades)}</span>
+            <span>{gradesAverage}</span>
             <span>%</span>
           </div>
 
