@@ -147,6 +147,10 @@ const ProfileImg = styled.div`
   img {
     width: 100%;
   }
+
+  @media (max-width: 567px) {
+    margin-top: 20px;
+  }
 `;
 
 const ProfileDetails = styled.div`
