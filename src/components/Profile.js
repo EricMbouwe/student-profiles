@@ -1,14 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import {
-  useRef, useState, useContext, useMemo,
-} from 'react';
+import { useState, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function Profile({ data }) {
   // const panelRef = useRef();
-  const accordionBtnRef = useRef();
+  // const accordionBtnRef = useRef();
   const [inputTagValue, setInputTagValue] = useState('');
   const [isActive, setIsActive] = useState(false);
 
@@ -78,13 +76,12 @@ function Profile({ data }) {
           </ProfileName>
           <AccordionBtn
             data-testid="toggle"
-            // onClick={toggleExpansionView}
             onClick={() => setIsActive(!isActive)}
-            ref={accordionBtnRef}
+            // onClick={toggleExpansionView}
+            // ref={accordionBtnRef}
           >
-            {/** <span />
-            <span /> */}
-            {isActive ? '-' : '+'}
+            <span />
+            <span />
           </AccordionBtn>
         </AccordionWrap>
 
@@ -207,17 +204,15 @@ const AccordionBtn = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  //margin-top: -21px;
+  margin-top: -21px;
 
-  color: #aaa;
-  margin-top: -16px;
-  font-size: 60px;
-  font-weight: 900;
-  border-radius: 5px;
-
-  &:hover {
-    color: #000;
-  }
+  //color: #aaa;
+  //margin-top: -16px;
+  //font-size: 60px;
+  //font-weight: 900;
+  //&:hover {
+  //  color: #000;
+  //}
 
   span {
     display: block;
