@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function Profile({ data }) {
-  // const panelRef = useRef();
-  // const accordionBtnRef = useRef();
   const [inputTagValue, setInputTagValue] = useState('');
   const [isActive, setIsActive] = useState(false);
 
@@ -41,17 +39,6 @@ function Profile({ data }) {
     [grades],
   );
 
-  /** const toggleExpansionView = () => {
-    accordionBtnRef.current.classList.toggle('active');
-
-    if (panelRef.current.style.maxHeight) {
-      panelRef.current.style.maxHeight = null;
-    } else {
-      panelRef.current.style.maxHeight = `${panelRef.current.scrollHeight}px`;
-    }
-  };
-  */
-
   const populateAccordionPanel = useMemo(() => grades.map(
     (grad, index) => (
       <div key={index}>
@@ -77,8 +64,6 @@ function Profile({ data }) {
           <AccordionBtn
             data-testid="toggle"
             onClick={() => setIsActive(!isActive)}
-            // onClick={toggleExpansionView}
-            // ref={accordionBtnRef}
           >
             <span />
             <span />
@@ -118,10 +103,6 @@ function Profile({ data }) {
             onKeyDown={addTag}
           />
         </ProfileInfos>
-
-        {/** <AccordionPanel ref={panelRef}>
-          {populateAccordionPanel}
-            </AccordionPanel> */}
 
         {isActive
           && (
@@ -206,13 +187,6 @@ const AccordionBtn = styled.button`
   cursor: pointer;
   margin-top: -21px;
 
-  //color: #aaa;
-  //margin-top: -16px;
-  //font-size: 60px;
-  //font-weight: 900;
-  //&:hover {
-  //  color: #000;
-  //}
 
   span {
     display: block;
@@ -255,10 +229,7 @@ const AccordionPanel = styled.div`
   padding-left: 15px;
   line-height: 1.5;
   font-weight: 200;
-  //overflow: hidden;
-  //transition: max-height 0.3s ease-out;
-  //max-height: 0;
-
+ 
   span:first-child {
     margin-right: 10px;
   }
