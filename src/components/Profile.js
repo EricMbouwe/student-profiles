@@ -1,15 +1,15 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import {
-  useRef, useState, useContext, useMemo,
-} from 'react';
+import { useState, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function Profile({ data }) {
-  const panelRef = useRef();
-  const accordionBtnRef = useRef();
+  // const panelRef = useRef();
+  // const accordionBtnRef = useRef();
   const [inputTagValue, setInputTagValue] = useState('');
+  const [isActive, setIsActive] = useState(false);
+
   const { grades } = data;
 
   const { addToTags, tags } = useContext(ProfileContext);
@@ -41,7 +41,7 @@ function Profile({ data }) {
     [grades],
   );
 
-  const toggleExpansionView = () => {
+  /** const toggleExpansionView = () => {
     accordionBtnRef.current.classList.toggle('active');
 
     if (panelRef.current.style.maxHeight) {
@@ -50,12 +50,16 @@ function Profile({ data }) {
       panelRef.current.style.maxHeight = `${panelRef.current.scrollHeight}px`;
     }
   };
+  */
 
-  const populateAccordionPanel = (grades) => grades.map((grad, index) => (
-    <div key={index}>
-      <span>{`Test ${index + 1}: `}</span>
-      <span>{`${grad}%`}</span>
-    </div>
+  const populateAccordionPanel = useMemo(() => grades.map(
+    (grad, index) => (
+      <div key={index}>
+        <span>{`Test ${index + 1}: `}</span>
+        <span>{`${grad}%`}</span>
+      </div>
+    ),
+    [grades],
   ));
 
   return (
@@ -72,8 +76,9 @@ function Profile({ data }) {
           </ProfileName>
           <AccordionBtn
             data-testid="toggle"
-            onClick={toggleExpansionView}
-            ref={accordionBtnRef}
+            onClick={() => setIsActive(!isActive)}
+            // onClick={toggleExpansionView}
+            // ref={accordionBtnRef}
           >
             <span />
             <span />
@@ -114,9 +119,16 @@ function Profile({ data }) {
           />
         </ProfileInfos>
 
-        <AccordionPanel ref={panelRef}>
-          {populateAccordionPanel(data.grades)}
-        </AccordionPanel>
+        {/** <AccordionPanel ref={panelRef}>
+          {populateAccordionPanel}
+            </AccordionPanel> */}
+
+        {isActive
+          && (
+          <AccordionPanel>
+            {populateAccordionPanel}
+          </AccordionPanel>
+          )}
       </ProfileDetails>
     </Wrap>
   );
@@ -149,7 +161,7 @@ const ProfileImg = styled.div`
   }
 
   @media (max-width: 567px) {
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -194,6 +206,14 @@ const AccordionBtn = styled.button`
   cursor: pointer;
   margin-top: -21px;
 
+  //color: #aaa;
+  //margin-top: -16px;
+  //font-size: 60px;
+  //font-weight: 900;
+  //&:hover {
+  //  color: #000;
+  //}
+
   span {
     display: block;
     width: 30px;
@@ -232,12 +252,12 @@ const AccordionBtn = styled.button`
 
 const AccordionPanel = styled.div`
   margin-top: 15px;
-  overflow: hidden;
   padding-left: 15px;
   line-height: 1.5;
   font-weight: 200;
-  transition: max-height 0.3s ease-out;
-  max-height: 0;
+  //overflow: hidden;
+  //transition: max-height 0.3s ease-out;
+  //max-height: 0;
 
   span:first-child {
     margin-right: 10px;
