@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# STUDENTS PROFILES
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a list of student's profiles that you can filter by name or by tags.
 
-## Available Scripts
+The project includes these features:
 
-In the project directory, you can run:
+- A List of student profiles  
+- Add tags to profiles
+- Filtering profiles by names and by tag
+- Display grades list in an expandable view (accordion)
 
-### `npm start`
+The app is using [Hatchways API](https://api.hatchways.io/assessment/students) as API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![screenshot](./public/student-profiles.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Live Demo
 
-### `npm test`
+Please check [LIVE DEMO](https://student-profiles-ericmbouwe.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To get a local copy up and running follow these simple example steps.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Make sure Node.js is running on your local machine.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
 
-### `npm run eject`
+- Clone this repository
+- Open terminal
+- Change directory by using `cd students-profiles`
+- Run `npm install`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Run `npm start`
+- Open a browser and go to http://localhost:3000
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Test app
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Clone this repository
+- Open terminal
+- Change directory by using `cd student-profiles`
+- Run `npm install`
+- Run `npm test` to run all tests
 
-## Learn More
+## Note
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I started this project 4 days ago and for some reason beyond my control I was not able to work on it the first 3 days after the activation of the evaluation. I actually had a few power issues which luckily have already been fixed.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Authors
 
-### Code Splitting
+Reach out to me at one of the following places!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+👤 **Eric Mbouwe**
 
-### Analyzing the Bundle Size
+- Website: [ericmbouwe.com](https://ericmbouwe.netlify.app)
+- LinkedIn: [Eric Mbouwe](https://www.linkedin.com/in/ericmbouwe/)
+- Github: [@ericmbouwe](https://github.com/ericmbouwe)
+- Twitter: [@ericmbouwe](https://twitter.com/ericmbouwe)
+- Mail: [ericmbouwe@gmail.com](ericmbouwe@gmail.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🤝 Contributing
 
-### Making a Progressive Web App
+Contributions, issues and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Feel free to check the [issues page](https://github.com/EricMbouwe/student-profiles/issues).
 
-### Advanced Configuration
+## Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Give a ⭐️ if you like this project!
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgments
