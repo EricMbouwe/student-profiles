@@ -73,8 +73,3 @@ Feel free to check the [issues page](https://github.com/EricMbouwe/student-profi
 Give a ⭐️ if you like this project!
 
 ## Acknowledgments
-
-Thanks to;
-
-- [Hatchways](https://hatchways.io/)
-- [LoginID](https://loginid.io/)
