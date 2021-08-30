@@ -18,7 +18,7 @@ function Home() {
             </Loadder>
           </RequestingResponse>
         )}
-        {filteredProfiles && (
+        {filteredProfiles.length > 0 && (
           <>
             <Header>
               <InputFilter text="Search by name" type="NAME" />

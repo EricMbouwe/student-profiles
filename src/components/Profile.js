@@ -1,12 +1,15 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { useState, useContext, useMemo } from 'react';
+import {
+  useState, useContext, useMemo, useRef,
+} from 'react';
 import styled from 'styled-components';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 function Profile({ data }) {
   const [inputTagValue, setInputTagValue] = useState('');
-  const [isActive, setIsActive] = useState(false);
+  const panelRef = useRef();
+  const accordionBtnRef = useRef();
 
   const { grades } = data;
 
@@ -29,6 +32,16 @@ function Profile({ data }) {
 
       addToTags(tag);
       setInputTagValue('');
+    }
+  };
+
+  const toggleExpansionView = () => {
+    accordionBtnRef.current.classList.toggle('active');
+
+    if (panelRef.current.style.maxHeight) {
+      panelRef.current.style.maxHeight = null;
+    } else {
+      panelRef.current.style.maxHeight = `${panelRef.current.scrollHeight}px`;
     }
   };
 
@@ -63,7 +76,8 @@ function Profile({ data }) {
           </ProfileName>
           <AccordionBtn
             data-testid="toggle"
-            onClick={() => setIsActive(!isActive)}
+            onClick={toggleExpansionView}
+            ref={accordionBtnRef}
           >
             <span />
             <span />
@@ -104,12 +118,9 @@ function Profile({ data }) {
           />
         </ProfileInfos>
 
-        {isActive
-          && (
-          <AccordionPanel>
-            {populateAccordionPanel}
-          </AccordionPanel>
-          )}
+        <AccordionPanel ref={panelRef}>
+          {populateAccordionPanel}
+        </AccordionPanel>
       </ProfileDetails>
     </Wrap>
   );
@@ -229,7 +240,10 @@ const AccordionPanel = styled.div`
   padding-left: 15px;
   line-height: 1.5;
   font-weight: 200;
- 
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+
   span:first-child {
     margin-right: 10px;
   }
