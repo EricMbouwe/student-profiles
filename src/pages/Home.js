@@ -10,22 +10,22 @@ function Home() {
   return (
     <Container>
       <Wrapper>
-        {error && <RequestingResponse>{error}</RequestingResponse>}
-        {loading && (
-          <RequestingResponse>
+        <RequestingResponse>
+          {error && <>{error}</>}
+          {loading && (
             <Loadder>
               <i className="fa fa-refresh" aria-hidden="true" />
             </Loadder>
-          </RequestingResponse>
-        )}
-        {filteredProfiles && (
-          <>
-            <Header>
-              <InputFilter text="Search by name" type="NAME" />
-              <InputFilter text="Search by tag" type="TAG" />
-            </Header>
-            <ProfileList profiles={filteredProfiles} />
-          </>
+          )}
+        </RequestingResponse>
+
+        <Header>
+          <InputFilter text="Search by name" type="NAME" />
+          <InputFilter text="Search by tag" type="TAG" />
+        </Header>
+
+        {filteredProfiles.length > 0 && (
+        <ProfileList profiles={filteredProfiles} />
         )}
       </Wrapper>
     </Container>
