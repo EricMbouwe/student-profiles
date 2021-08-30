@@ -242,7 +242,7 @@ const AccordionPanel = styled.div`
   font-weight: 200;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  transition: max-height 0.3s ease-out;
 
   span:first-child {
     margin-right: 10px;
